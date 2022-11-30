@@ -3,7 +3,7 @@ city-list
 
 ## Checkout Project
 ```
-git clone https:
+git clone https://github.com/IsmatAl/CityList.git
 ```
 
 ## Setup of IDE development environment
