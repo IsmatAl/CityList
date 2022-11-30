@@ -18,22 +18,20 @@ import java.time.Instant;
 @RequiredArgsConstructor
 public class CityRestController {
 
-    private final DateService dateService;
-    private final CityService cityService;
-    private final CityResponseResourceConverter cityResourceConverter;
+	private final DateService dateService;
+	private final CityService cityService;
+	private final CityResponseResourceConverter cityResourceConverter;
 
-    @GetMapping
-    public Page<CityResponseResource> getAll(
-            @RequestParam(name = "page", defaultValue = "0") final Integer pageNumber,
-            @RequestParam(name = "size", defaultValue = "10") final Integer pageSize,
-            @RequestParam(name = "cityName", required = false) final String cityName,
-            @RequestParam(name = "createdFrom", required = false) final String createdFrom) {
-        final PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
-        final Instant createdFromInstant = dateService.convertStringToInstant(createdFrom);
-        final CityRequestFilter cityRequestFilter = CityRequestFilter.builder()
-                .createdFrom(createdFromInstant).cityName(cityName).build();
-        final Page<City> projectProjectionsPage = cityService.getAll(pageRequest,
-                cityRequestFilter);
-        return projectProjectionsPage.map(cityResourceConverter::convertToResource);
-    }
+	@GetMapping
+	public Page<CityResponseResource> getAll(@RequestParam(name = "page", defaultValue = "0") final Integer pageNumber,
+			@RequestParam(name = "size", defaultValue = "10") final Integer pageSize,
+			@RequestParam(name = "cityName", required = false) final String cityName,
+			@RequestParam(name = "createdFrom", required = false) final String createdFrom) {
+		final PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+		final Instant createdFromInstant = dateService.convertStringToInstant(createdFrom);
+		final CityRequestFilter cityRequestFilter = CityRequestFilter.builder().createdFrom(createdFromInstant)
+				.cityName(cityName).build();
+		final Page<City> projectProjectionsPage = cityService.getAll(pageRequest, cityRequestFilter);
+		return projectProjectionsPage.map(cityResourceConverter::convertToResource);
+	}
 }

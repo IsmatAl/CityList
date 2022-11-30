@@ -14,10 +14,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JpaConfiguration {
 
-    private final SecurityAdapter securityAdapter;
+	private final SecurityAdapter securityAdapter;
 
-    @Bean
-    public AuditorAware auditorProvider() {
-        return () -> Optional.of(securityAdapter.getAccountUserName());
-    }
+	@Bean
+	public AuditorAware auditorProvider() {
+		return () -> Optional.of(securityAdapter.getAccountUserName());
+	}
 }

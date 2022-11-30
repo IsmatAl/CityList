@@ -17,7 +17,6 @@ class SecurityConfigurationIntegrationTest {
 	@Autowired
 	private TestRestTemplate template;
 
-
 	@Test
 	public void shouldSuccessWithSwaggerUI() {
 		// when

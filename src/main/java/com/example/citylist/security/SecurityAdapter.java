@@ -13,8 +13,7 @@ public class SecurityAdapter {
 
 	public String getAccountUserName() {
 		try {
-			final User principal = (User) SecurityContextHolder.getContext().getAuthentication()
-					.getPrincipal();
+			final User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			return principal.getUsername();
 		} catch (Exception e) {
 			return SYSTEM_USER_NAME;

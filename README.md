@@ -3,7 +3,7 @@ city-list
 
 ## Checkout Project
 ```
-git clone https:
+git clone https://github.com/IsmatAl/CityList.git
 ```
 
 ## Setup of IDE development environment
@@ -27,7 +27,7 @@ gradlew sA clean build -Dorg.gradle.java.home="c:/dev/Java/openjdk-17.0.2"
 * Monitoring our app, gathering metrics, understanding traffic etc
 * All actuator endpoints are placed under {managementPort}/actuator path
 * Some available endpoints under actuator as follows.
-    * /health
-    * /info
-    * /prometheus
-    * /metrics
+	* /health
+	* /info
+	* /prometheus
+	* /metrics

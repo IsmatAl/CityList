@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CityRequestResourceConverter {
 
-    public City convertToDomain(final CityRequestResource cityRequestResource) {
-        return City.builder().cityName(cityRequestResource.getCityName())
-                .imageURL(cityRequestResource.getImageURL()).build();
-    }
+	public City convertToDomain(final CityRequestResource cityRequestResource) {
+		return City.builder().cityName(cityRequestResource.getCityName()).imageURL(cityRequestResource.getImageURL())
+				.build();
+	}
 }

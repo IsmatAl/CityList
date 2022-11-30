@@ -13,11 +13,10 @@ import java.time.Instant;
 @Repository
 public interface CityEntityRepository extends JpaRepository<CityEntity, Long> {
 
-    @Query("SELECT new com.example.citylist.domain.model.city.City(c.id, c.cityName, c.imageURL) " +
-            "FROM CityEntity c " +
-            "WHERE (cast(:createdFrom as date) IS NULL OR c.createdAt >= :createdFrom ) " +
-            " AND (cast(:cityName as string) IS NULL OR lower(c.cityName) like lower(concat('%', :cityName,'%'))) " +
-            "ORDER BY c.createdAt DESC")
-    Page<City> findCities(@Param("createdFrom") final Instant createdFrom,
-                          @Param("cityName") final String cityName, final Pageable pageable);
+	@Query("SELECT new com.example.citylist.domain.model.city.City(c.id, c.cityName, c.imageURL) "
+			+ "FROM CityEntity c WHERE (cast(:createdFrom as date) IS NULL OR c.createdAt >= :createdFrom ) "
+			+ " AND (cast(:cityName as string) IS NULL OR lower(c.cityName) like lower(concat('%', :cityName,'%'))) "
+			+ "ORDER BY c.createdAt DESC")
+	Page<City> findCities(@Param("createdFrom") final Instant createdFrom, @Param("cityName") final String cityName,
+			final Pageable pageable);
 }

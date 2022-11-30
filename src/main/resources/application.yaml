@@ -38,8 +38,7 @@ management:
     env:
       enabled: true
 
-springdoc:
-  swagger-ui:
-    enabled: false
-  api-docs:
-    enabled: false
+server:
+  servlet:
+    context-path: /portal
+  port: 9090

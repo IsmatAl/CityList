@@ -25,75 +25,72 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 public class CityServiceUnitTest {
 
-    @InjectMocks
-    private CityService cityService;
+	@InjectMocks
+	private CityService cityService;
 
-    @Mock
-    private CityAdapter cityAdapter;
+	@Mock
+	private CityAdapter cityAdapter;
 
-    @Mock
-    private CityValidator cityValidator;
+	@Mock
+	private CityValidator cityValidator;
 
-    @Test
-    void shouldFindCityById() {
-        // given
-        final City city = testCity().id(1L).build();
-        final Long id = city.getId();
-        given(cityAdapter.findById(city.getId())).willReturn(city);
+	@Test
+	void shouldFindCityById() {
+		// given
+		final City city = testCity().id(1L).build();
+		final Long id = city.getId();
+		given(cityAdapter.findById(city.getId())).willReturn(city);
 
-        // when
-        final City actual = cityService.findById(id);
+		// when
+		final City actual = cityService.findById(id);
 
-        // then
-        verify(cityAdapter).findById(id);
-        assertThat(actual).usingRecursiveComparison().isEqualTo(city);
-    }
+		// then
+		verify(cityAdapter).findById(id);
+		assertThat(actual).usingRecursiveComparison().isEqualTo(city);
+	}
 
-    @Test
-    void shouldReturnNullIfCityWithGivenIdDoesNotExist() {
-        // given
-        final Long nonExistingId = 2L;
-        given(cityAdapter.findById(nonExistingId)).willReturn(null);
+	@Test
+	void shouldReturnNullIfCityWithGivenIdDoesNotExist() {
+		// given
+		final Long nonExistingId = 2L;
+		given(cityAdapter.findById(nonExistingId)).willReturn(null);
 
-        // when
-        final City actual = cityService.findById(nonExistingId);
+		// when
+		final City actual = cityService.findById(nonExistingId);
 
-        // then
-        verify(cityAdapter).findById(nonExistingId);
-        assertThat(actual).isNull();
-    }
+		// then
+		verify(cityAdapter).findById(nonExistingId);
+		assertThat(actual).isNull();
+	}
 
-    @Test
-    void shouldGetCities() {
-        // given
-        final City city = testCity().build();
-        final PageRequest pageRequest = PageRequest.of(1, 3);
-        final CityRequestFilter cityRequestFilter = cityRequestFilterBuilderWithCreatedFromNow()
-                .build();
-        given(cityAdapter.getAll(pageRequest, cityRequestFilter))
-                .willReturn(new PageImpl<>(List.of(city)));
+	@Test
+	void shouldGetCities() {
+		// given
+		final City city = testCity().build();
+		final PageRequest pageRequest = PageRequest.of(1, 3);
+		final CityRequestFilter cityRequestFilter = cityRequestFilterBuilderWithCreatedFromNow().build();
+		given(cityAdapter.getAll(pageRequest, cityRequestFilter)).willReturn(new PageImpl<>(List.of(city)));
 
-        // when
-        final Page<City> actual = cityService.getAll(pageRequest,
-                cityRequestFilter);
+		// when
+		final Page<City> actual = cityService.getAll(pageRequest, cityRequestFilter);
 
-        // then
-        verify(cityAdapter).getAll(pageRequest, cityRequestFilter);
-        assertThat(actual.getContent()).containsExactly(city);
-    }
+		// then
+		verify(cityAdapter).getAll(pageRequest, cityRequestFilter);
+		assertThat(actual.getContent()).containsExactly(city);
+	}
 
-    @Test
-    void shouldAllowAdminToUpdateCity() {
-        // given
-        final Long cityId = 1L;
-        final City city = testCity().id(cityId).build();
-        doNothing().when(cityAdapter).update(city);
+	@Test
+	void shouldAllowAdminToUpdateCity() {
+		// given
+		final Long cityId = 1L;
+		final City city = testCity().id(cityId).build();
+		doNothing().when(cityAdapter).update(city);
 
-        // when
-        cityService.update(city);
+		// when
+		cityService.update(city);
 
-        // then
-        verify(cityValidator).validateCityExists(cityId);
-        verify(cityAdapter).update(city);
-    }
+		// then
+		verify(cityValidator).validateCityExists(cityId);
+		verify(cityAdapter).update(city);
+	}
 }

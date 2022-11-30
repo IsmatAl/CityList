@@ -13,20 +13,19 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CityService {
 
-    private final CityAdapter cityAdapter;
-    private final CityValidator cityValidator;
+	private final CityAdapter cityAdapter;
+	private final CityValidator cityValidator;
 
-    public Page<City> getAll(final PageRequest pageRequest,
-                             final CityRequestFilter cityRequestFilter) {
-        return cityAdapter.getAll(pageRequest, cityRequestFilter);
-    }
+	public Page<City> getAll(final PageRequest pageRequest, final CityRequestFilter cityRequestFilter) {
+		return cityAdapter.getAll(pageRequest, cityRequestFilter);
+	}
 
-    public void update(final City city) {
-        cityValidator.validateCityExists(city.getId());
-        cityAdapter.update(city);
-    }
+	public void update(final City city) {
+		cityValidator.validateCityExists(city.getId());
+		cityAdapter.update(city);
+	}
 
-    public City findById(final Long id) {
-        return cityAdapter.findById(id);
-    }
+	public City findById(final Long id) {
+		return cityAdapter.findById(id);
+	}
 }

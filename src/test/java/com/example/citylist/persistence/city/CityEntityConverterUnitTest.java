@@ -13,43 +13,40 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(MockitoExtension.class)
 public class CityEntityConverterUnitTest {
 
+	@InjectMocks
+	private CityEntityConverter cityEntityConverter;
 
-    @InjectMocks
-    private CityEntityConverter cityEntityConverter;
+	@Test
+	void shouldConvertCityEntityToCity() {
+		// given
+		CityEntity cityEntity = testCityEntity().id(2L).build();
 
-    @Test
-    void shouldConvertCityEntityToCity() {
-        // given
-        CityEntity cityEntity = testCityEntity().id(2L).build();
+		// when
+		City actual = cityEntityConverter.convertToDomain(cityEntity);
 
-        // when
-        City actual = cityEntityConverter.convertToDomain(cityEntity);
+		// then
+		assertThat(actual).usingRecursiveComparison().isEqualTo(cityEntity);
+	}
 
-        // then
-        assertThat(actual).usingRecursiveComparison()
-                .isEqualTo(cityEntity);
-    }
+	@Test
+	void shouldReturnNullIfCityEntityIsNull() {
+		// when
+		final City actual = cityEntityConverter.convertToDomain(null);
 
-    @Test
-    void shouldReturnNullIfCityEntityIsNull() {
-        // when
-        final City actual = cityEntityConverter.convertToDomain(null);
+		// then
+		assertThat(actual).isNull();
+	}
 
-        // then
-        assertThat(actual).isNull();
-    }
+	@Test
+	void shouldConvertCityToCityEntity() {
+		// given
+		City city = testCity().id(2L).build();
 
-    @Test
-    void shouldConvertCityToCityEntity() {
-        // given
-        City city = testCity().id(2L).build();
+		// when
+		CityEntity actual = cityEntityConverter.convertToEntity(city);
 
-        // when
-        CityEntity actual = cityEntityConverter.convertToEntity(city);
-
-        // then
-        assertThat(actual).usingRecursiveComparison()
-                .ignoringFields("createdAt", "createdBy", "modifiedAt", "modifiedBy")
-                .isEqualTo(city);
-    }
+		// then
+		assertThat(actual).usingRecursiveComparison()
+				.ignoringFields("createdAt", "createdBy", "modifiedAt", "modifiedBy").isEqualTo(city);
+	}
 }

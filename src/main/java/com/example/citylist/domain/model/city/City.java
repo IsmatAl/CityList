@@ -8,7 +8,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class City {
-    Long id;
-    String cityName;
-    String imageURL;
+	Long id;
+	String cityName;
+	String imageURL;
 }

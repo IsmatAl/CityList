@@ -10,9 +10,8 @@ import java.util.function.Predicate;
 @Component
 public class Helper {
 
-    public static <T> Predicate<T>
-    distinctByKeyClass(final Function<? super T, Object> keyExtractor) {
-        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
-        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
-    }
+	public static <T> Predicate<T> distinctByKeyClass(final Function<? super T, Object> keyExtractor) {
+		Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+		return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+	}
 }

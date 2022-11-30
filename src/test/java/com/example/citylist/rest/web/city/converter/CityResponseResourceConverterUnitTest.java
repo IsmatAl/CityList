@@ -13,19 +13,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(MockitoExtension.class)
 public class CityResponseResourceConverterUnitTest {
 
-    @InjectMocks
-    private CityResponseResourceConverter converter;
+	@InjectMocks
+	private CityResponseResourceConverter converter;
 
-    @Test
-    void shouldConvertCityToCityResponseResource() {
-        // given
-        final City city = testCity().build();
+	@Test
+	void shouldConvertCityToCityResponseResource() {
+		// given
+		final City city = testCity().build();
 
-        // when
-        final CityResponseResource actual = converter.convertToResource(city);
+		// when
+		final CityResponseResource actual = converter.convertToResource(city);
 
-        // then
-        assertThat(actual).usingRecursiveComparison()
-                .isEqualTo(city);
-    }
+		// then
+		assertThat(actual).usingRecursiveComparison().isEqualTo(city);
+	}
 }

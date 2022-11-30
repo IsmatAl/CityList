@@ -12,7 +12,8 @@ public class OpenApiConfiguration {
 
 	@Bean
 	public GroupedOpenApi publicWebPortalOpenApi() {
-		return GroupedOpenApi.builder().displayName("Public Portal").group("web").pathsToMatch("/api/public/**").build();
+		return GroupedOpenApi.builder().displayName("Public Portal").group("web").pathsToMatch("/api/public/**")
+				.build();
 	}
 
 	@Bean

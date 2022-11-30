@@ -12,12 +12,12 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class CityValidator {
 
-    private final CityAdapter cityAdapter;
+	private final CityAdapter cityAdapter;
 
-    public void validateCityExists(final Long accountId) {
-        final City city = cityAdapter.findById(accountId);
-        if (Objects.isNull(city)) {
-            throw new InvalidCityException("City with given id does not exist", "city-does-not-exist", null);
-        }
-    }
+	public void validateCityExists(final Long accountId) {
+		final City city = cityAdapter.findById(accountId);
+		if (Objects.isNull(city)) {
+			throw new InvalidCityException("City with given id does not exist", "city-does-not-exist", null);
+		}
+	}
 }
