@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SecurityAdapter {
 
-	private static final String SYSTEM_USER_NAME = "admin";
+	private static final String ANONYMOUS_USER = "anonymous_user";
 
 	public String getAccountUserName() {
 		try {
 			final User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			return principal.getUsername();
 		} catch (Exception e) {
-			return SYSTEM_USER_NAME;
+			return ANONYMOUS_USER;
 		}
 	}
 
