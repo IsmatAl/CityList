@@ -32,5 +32,5 @@ gradlew sA clean build -Dorg.gradle.java.home="c:/dev/Java/openjdk-17.0.2"
 	* /prometheus
 	* /metrics
 
-##Docker
+## Docker
 * In order to make it easier for developers we can containerize database with a docker compose file added under the etc/config/database folder together with init script
