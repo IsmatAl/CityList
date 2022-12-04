@@ -19,8 +19,8 @@ gradlew sA clean build -Dorg.gradle.java.home="c:/dev/Java/openjdk-17.0.2"
 
 ## Rest Documentation
 * Documentation of the REST APIs
-* The Swagger UI landing page url, {environment-url}/swagger-ui/index.html
-* Json url, {environment-url}/v3/api-docs, developers can import the json file or url into the postman.
+* The Swagger UI landing page url, {environment-url}/portal/swagger-ui/index.html
+* Json url, {environment-url}/portal/v3/api-docs, developers can import the json file or url into the postman.
 
 ## Actuator
 * Actuator brings production-ready features to our application.
@@ -31,3 +31,6 @@ gradlew sA clean build -Dorg.gradle.java.home="c:/dev/Java/openjdk-17.0.2"
 	* /info
 	* /prometheus
 	* /metrics
+
+##Docker
+In order to make it easier for developers we can containerize database with a docker compose file added under the etc/config/database folder together with init script
